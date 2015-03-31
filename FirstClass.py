@@ -1,4 +1,4 @@
-
+from TFIDF import TFIDF
 import nltk
 import math
 from nltk.tokenize import word_tokenize
@@ -6,7 +6,9 @@ from nltk.corpus import stopwords
 
 class FirstClass:
 	stop = []
-	debug = True
+	debug = False
+	listDict = []
+	
 	
 	def __init__(self):
 		print 'Inside first class'
@@ -18,7 +20,8 @@ class FirstClass:
 		print words
 		refined = [i for i in words if i not in self.stop] 
 		print "Words after removing stop words"
-		print refined
+		if self.debug:
+			print refined
 		
 	def openFile(self,fileList):
 		listFile =[]
@@ -28,14 +31,26 @@ class FirstClass:
 			file.seek(0)
 			listFile.append(file)
 		return listFile
-	
+			
 	def stopWords(self,fileList):
 		listFile = []
 		for i in range(0,len(fileList),1):
 			words = word_tokenize(fileList[i].read(), 'english')
-			print words
+			if self.debug:
+				print words
 			words = [x for x in words if x not in self.stop]
 			if self.debug:
 				print "WITHOUT STOP WORDS ==> ",words
-			listFile.append(fileList[i])
+			listFile.append(words)
 		return listFile
+	
+	def calculateTfidf(self,docList):
+		idfObj = TFIDF()
+		for i in range(0,len(docList),1):
+			freqDict = {}
+			for j in range(0,len(docList[i]),1):
+				freqDict[docList[i][j]] = idfObj.tfidf(docList, docList[i], docList[i][j]) 
+				
+			self.listDict.append(freqDict)
+				
+		return self.listDict
