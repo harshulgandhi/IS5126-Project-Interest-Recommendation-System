@@ -3,17 +3,26 @@ import nltk
 import math
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from idlelib import PathBrowser
+from os import listdir
+from os.path import isfile, join
 
 class FirstClass:
 	stop = []
 	debug = False
 	listDict = []
-	
+	inputList = []
 	
 	def __init__(self):
 		print 'Inside first class'
 		self.stop = stopwords.words('english')
 		
+	def getFileList(self,path):
+		[f for f in listdir(path) if isfile(join(path,f))]
+		self.inputList = f
+		return self.inputList
+	
+	
 	def sampleNltk(self,str):
 		words = word_tokenize(str)
 		print "Tokenizer example"
@@ -26,7 +35,7 @@ class FirstClass:
 	def openFile(self,fileList):
 		listFile =[]
 		for i in range(0,len(fileList),1):
-			name = "SampleFiles/"+fileList[i] + ".txt"
+			name = "Tweets/"+fileList[i]
 			file = open(name,"r+")
 			file.seek(0)
 			listFile.append(file)
@@ -35,7 +44,7 @@ class FirstClass:
 	def stopWords(self,fileList):
 		listFile = []
 		for i in range(0,len(fileList),1):
-			words = word_tokenize(fileList[i].read(), 'english')
+			words = word_tokenize(fileList[i].read().decode('UTF-8'), 'english')
 			if self.debug:
 				print words
 			words = [x for x in words if x not in self.stop]
@@ -46,11 +55,16 @@ class FirstClass:
 	
 	def calculateTfidf(self,docList):
 		idfObj = TFIDF()
+# 		[l for l in listdir("Tweets/") if isfile(join("Tweets/",l))]
+# 		print "f[0] => ",l
 		for i in range(0,len(docList),1):
 			freqDict = {}
+			file = open("tfidf"+self.inputList[i],"w+")
+			print "File open with name : "+"tfidf"+self.inputList[i]
 			for j in range(0,len(docList[i]),1):
 				freqDict[docList[i][j]] = idfObj.tfidf(docList, docList[i], docList[i][j]) 
 				
 			self.listDict.append(freqDict)
+			file.write(str(freqDict))
 				
 		return self.listDict

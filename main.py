@@ -4,11 +4,13 @@ import cmath
 fc_obj = FirstClass()
 txt = "This is NLTK Tutorial"
 
-#print type(cmath.log(3/4))
  
 fc_obj.sampleNltk(txt) 
-testList = ["hockey","liberty","toi_text"]
-refinedList = fc_obj.stopWords(fc_obj.openFile(testList))
+#testList = ["hockey","liberty","toi_text"]
+fileList = fc_obj.getFileList("Tweets/")
+print fileList
+refinedList = fc_obj.stopWords(fc_obj.openFile(['ConnieSayCheese_tweetdoc.txt']))
+
 freqDictionary = fc_obj.calculateTfidf(refinedList)
 print freqDictionary
 
