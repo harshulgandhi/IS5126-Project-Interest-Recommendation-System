@@ -7,7 +7,7 @@ from idlelib import PathBrowser
 from os import listdir
 from os.path import isfile, join
 
-class FirstClass:
+class TweetTfidf:
 	stop = []
 	debug = False
 	listDict = []
@@ -18,8 +18,9 @@ class FirstClass:
 		self.stop = stopwords.words('english')
 		
 	def getFileList(self,path):
-		[f for f in listdir(path) if isfile(join(path,f))]
-		self.inputList = f
+# 		[f for f in listdir(path)]
+# 		print "len(f) = ",len(f)
+ 		self.inputList = listdir(path)
 		return self.inputList
 	
 	
@@ -59,12 +60,16 @@ class FirstClass:
 # 		print "f[0] => ",l
 		for i in range(0,len(docList),1):
 			freqDict = {}
-			file = open("tfidf"+self.inputList[i],"w+")
+			file = open("Tweets/tfidf_"+self.inputList[i],"w+")
 			print "File open with name : "+"tfidf"+self.inputList[i]
 			for j in range(0,len(docList[i]),1):
 				freqDict[docList[i][j]] = idfObj.tfidf(docList, docList[i], docList[i][j]) 
 				
 			self.listDict.append(freqDict)
-			file.write(str(freqDict))
+			sortedFreqList = sorted(freqDict.items(),key=lambda x:x[1],reverse=True)
+			for k in range(0,len(sortedFreqList),1):
+				file.write(str(sortedFreqList[k]))
+				file.write("\n")
+			print "TFIDF for tweeter account "+str(self.inputList[i])+" has been created\n" 
 				
 		return self.listDict

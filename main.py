@@ -1,18 +1,29 @@
-from FirstClass import FirstClass
+from FirstClass import TFIDF,TweetTfidf
 from TFIDF import TFIDF
 import cmath
-fc_obj = FirstClass()
+from os import listdir
+
+fc_obj = TweetTfidf()
 txt = "This is NLTK Tutorial"
 
- 
-fc_obj.sampleNltk(txt) 
-#testList = ["hockey","liberty","toi_text"]
-fileList = fc_obj.getFileList("Tweets/")
-print fileList
-refinedList = fc_obj.stopWords(fc_obj.openFile(['ConnieSayCheese_tweetdoc.txt']))
+# data = {1:'a', 2:'b'}
+# print "type => ",type(data)
+# print "sorted(data.values()) =>",sorted(data.values())
+# print "sorted(data, key=data.get) =>",sorted(data, key=data.get)
+# print "sorted(data.items(), key=lambda x:x[1]) => ",sorted(data.items(), key=lambda x:x[1], reverse=True)
+# 
+# print "type(sorted(data.items(), key=lambda x:x[1]) => ",type(sorted(data.items(), key=lambda x:x[1]))
 
+
+
+fc_obj.sampleNltk(txt) 
+ 
+fileList = fc_obj.getFileList("Tweets/")
+print "fileList == ", fileList
+refinedList = fc_obj.stopWords(fc_obj.openFile(fileList))
+ 
 freqDictionary = fc_obj.calculateTfidf(refinedList)
-print freqDictionary
+#print freqDictionary
 
 
 
