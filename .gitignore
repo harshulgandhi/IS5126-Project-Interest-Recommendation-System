@@ -1,1 +1,7 @@
 *test*
+/FirstClass.pyc
+/TFIDF.pyc
+*.rar
+*.csv
+*.txt
+
