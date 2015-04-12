@@ -1,8 +1,8 @@
 import math
-import MySQLdb
-import MySQLdb.cursors
-import config
-from pymongo import MongoClient
+# import MySQLdb
+# import MySQLdb.cursors
+# import config
+# from pymongo import MongoClient
 
 class GeoLocation:
     '''
@@ -69,12 +69,15 @@ class GeoLocation:
         Computes the great circle distance between this GeoLocation instance
         and the other.
         '''
-        return radius * math.acos(
-                math.sin(self.rad_lat) * math.sin(other.rad_lat) +
-                math.cos(self.rad_lat) * 
-                math.cos(other.rad_lat) * 
-                math.cos(self.rad_lon - other.rad_lon)
-            )
+        if self.rad_lon - other.rad_lon == 0:
+            return 10000
+        else:
+            return radius * math.acos(
+                    math.sin(self.rad_lat) * math.sin(other.rad_lat) +
+                    math.cos(self.rad_lat) * 
+                    math.cos(other.rad_lat) * 
+                    math.cos(self.rad_lon - other.rad_lon)
+                )
             
     def bounding_locations(self, distance, radius=EARTH_RADIUS):
         '''

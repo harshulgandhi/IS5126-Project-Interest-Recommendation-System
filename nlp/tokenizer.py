@@ -74,22 +74,22 @@ class Tokenizer:
     
     def tokenize_as_tweet(self):
         if self.__raw_string is not None:
-#             self.__match_whitespaces(TOKEN_CLASS_WHITESPACE)
-#             self.__match_unicode_strings(TOKEN_CLASS_UNICODE)
-#             self.__match_urls(TOKEN_CLASS_URL)
-#             self.__match_emails(TOKEN_CLASS_EMAIL)
-#             self.__match_special_twitter_concepts('@', TOKEN_CLASS_SPECIAL_TERM_USER)
-#             self.__match_special_twitter_concepts('#', TOKEN_CLASS_SPECIAL_TERM_TOPIC)
-#             self.__match_html_entities(TOKEN_CLASS_HTML_ENTITY)
-#             self.__match_numbers(TOKEN_CLASS_NUMBER)
-#             self.__match_emoticons(TOKEN_CLASS_EMOTICON)
-#             self.__match_repeated_chars(PUNCTUATION_MARKS__TERMINAL_POINTS, TOKEN_CLASS_PUNCTUATION_TERMINAL_POINTS_REPEATED)
-#             self.__match_repeated_chars(PUNCTUATION_MARKS__PAUSING_POINTS, TOKEN_CLASS_PUNCTUATION_PAUSING_POINTS_REPEATED)
-#             self.__match_puncuation_marks(PUNCTUATION_MARKS__TERMINAL_POINTS, TOKEN_CLASS_PUNCTUATION_TERMINAL_POINTS)
-#             self.__match_puncuation_marks(PUNCTUATION_MARKS__PAUSING_POINTS, TOKEN_CLASS_PUNCTUATION_PAUSING_POINTS)
+            self.__match_whitespaces(TOKEN_CLASS_WHITESPACE)
+            self.__match_unicode_strings(TOKEN_CLASS_UNICODE)
+            self.__match_urls(TOKEN_CLASS_URL)
+            self.__match_emails(TOKEN_CLASS_EMAIL)
+            self.__match_special_twitter_concepts('@', TOKEN_CLASS_SPECIAL_TERM_USER)
+            self.__match_special_twitter_concepts('#', TOKEN_CLASS_SPECIAL_TERM_TOPIC)
+            self.__match_html_entities(TOKEN_CLASS_HTML_ENTITY)
+            self.__match_numbers(TOKEN_CLASS_NUMBER)
+            self.__match_emoticons(TOKEN_CLASS_EMOTICON)
+            self.__match_repeated_chars(PUNCTUATION_MARKS__TERMINAL_POINTS, TOKEN_CLASS_PUNCTUATION_TERMINAL_POINTS_REPEATED)
+            self.__match_repeated_chars(PUNCTUATION_MARKS__PAUSING_POINTS, TOKEN_CLASS_PUNCTUATION_PAUSING_POINTS_REPEATED)
+            self.__match_puncuation_marks(PUNCTUATION_MARKS__TERMINAL_POINTS, TOKEN_CLASS_PUNCTUATION_TERMINAL_POINTS)
+            self.__match_puncuation_marks(PUNCTUATION_MARKS__PAUSING_POINTS, TOKEN_CLASS_PUNCTUATION_PAUSING_POINTS)
             self.__match_alphanumeric_words(TOKEN_CLASS_ALPHANUM)
-#             self.__match_selected_characters('&@*', TOKEN_CLASS_ALPHANUM)
-#             self.__match_nonascii_characters(TOKEN_CLASS_NON_ASCII)
+            self.__match_selected_characters('&@*', TOKEN_CLASS_ALPHANUM)
+            self.__match_nonascii_characters(TOKEN_CLASS_NON_ASCII)
             self.__generate_token_list()
 
     def tokenize(self):
@@ -323,9 +323,9 @@ if __name__ == "__main__":
     #print s
     se = "I\'m at Cafe 1 in Singapore https://t.co/E9ueFm7PLL"
     tokenizer = Tokenizer(se) 
-    
-    #tokenizer.tokenize_as_tweet()
-    
+    #print tokenizer.__raw_string
+    print tokenizer.tokenize_as_tweet()
+    print tokenizer.get_token_list()
     #print s
     #print tokenizer.get_token_list()
     #print tokenizer.generate_candidate_strings([TOKEN_CLASS_ALPHANUM, TOKEN_CLASS_IN_VOCABULARY_WORD, TOKEN_CLASS_IN_PLACE_VOCABULARY_WORD, TOKEN_CLASS_NUMBER, TOKEN_CLASS_SPECIAL_TERM_TOPIC, TOKEN_CLASS_SPECIAL_TERM_USER])
