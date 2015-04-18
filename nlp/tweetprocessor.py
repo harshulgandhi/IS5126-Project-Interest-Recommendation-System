@@ -228,20 +228,6 @@ class TweetProcessor:
                 eachrow.append(countPerLocation[user][i][1])
                 csvf.writerow(eachrow)
                 eachrow=[]
-                    
-#    def locationWiseTweets(self,):
-        
-#     def writeOutputToFile(self,d):
-#         header=['username','text','tokenized_tweet','processed_tweet','timestamp','geo','media_exists']
-#         fl= open('processed_tweet.csv',"wb")
-#         csvwriter = csv.DictWriter(fl,delimiter=",",fieldnames=header)
-#         csvwriter.writerow(dict((fn,fn) for fn in header))
-#         for row in d:
-#             csvwriter.writerow(row)
-#         print "output file has been created!"
-#         fl.close()
-# #             row['processed_tweet'] = row['text']
-# #             print row['username'] + " == "+ row['text']+ " == "+row['geo']+ " == "+row['timestamp']+ " == "+row['processed_tweet'] 
 
 
 if __name__ == "__main__":
